@@ -31,3 +31,28 @@ CREATE TABLE club_member_info_cleaned (
 Copy all values from the original table 
 insert into club_member_info_cleaned
 select * from club_member_info;
+
+Cleaning step
+Step 1: remove white space 
+update club_member_info_cleaned
+set full_name = trim(full_name	)
+
+Step 2: remove outlier age 
+Update club_member_info_cleaned 
+set age = 70 
+where age >99
+
+Step 3: Update Null martial_status and spelling error
+update club_member_info_cleaned
+set martial_status = 'married' 
+where martial_status = ''
+
+update club_member_info_cleaned set martial_status = 'divorced' where martial_status = 'divored'
+
+Step 4: Update Null job_title
+update club_member_info_cleaned 
+set job_title = 'Senior Sales Associate'
+where job_title = ' '
+
+
+
