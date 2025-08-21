@@ -54,5 +54,11 @@ update club_member_info_cleaned
 set job_title = 'Senior Sales Associate'
 where job_title = ' '
 
+Step 5: Remove Duplicate
+DELETE FROM club_member_info_cleaned
+WHERE rowid NOT IN
+    (SELECT MIN(rowid)
+    FROM club_member_info_cleaned
+    GROUP BY full_name, age, martial_status, email, phone, full_address, job_title, membership_date);
 
 
